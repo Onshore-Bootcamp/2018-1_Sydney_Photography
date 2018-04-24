@@ -1,0 +1,69 @@
+﻿@using PhotographyCapstone.Models
+@model PhotoPO
+
+@{
+    ViewBag.Title = "UpdatePhoto";
+}
+<div class="light-background">
+    <h2>Update Photo Information</h2>
+    @using (Html.BeginForm("UpdatePhoto", "Photo", FormMethod.Post))
+    {
+        <div class="form-group">
+            @Html.HiddenFor(model => Model.PhotoID)
+        </div>
+        <div class="form-horizontal">
+            @Html.LabelFor(model => Model.PhotoName)
+            <div class="form-group">
+                @Html.TextBoxFor(model => Model.PhotoName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => Model.PhotoName)
+            </div>
+        </div>
+        <div class="form-horizontal">
+            @Html.LabelFor(model => Model.Size)
+            <div class="form-group">
+                @Html.TextBoxFor(model => Model.Size, new { @class = "form-control" })
+
+                @Html.ValidationMessageFor(model => Model.Size)
+            </div>
+        </div>
+        <div class="form-horizontal">
+            @Html.LabelFor(model => Model.Height)
+            <div class="form-group">
+                @Html.TextBoxFor(model => Model.Height, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => Model.Height)
+
+            </div>
+        </div>
+        <div class="form-horizontal">
+            @Html.LabelFor(model => Model.Width)
+            <div class="form-group">
+                @Html.TextBoxFor(model => Model.Width, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => Model.Width)
+            </div>
+        </div>
+        <div class="form-horizontal">
+            @Html.LabelFor(model => Model.ExtensionType)
+            <div class="form-group">
+                @Html.TextBoxFor(model => Model.ExtensionType, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => Model.ExtensionType)
+            </div>
+        </div>
+        <div class="form-horizontal">
+            @Html.LabelFor(model => Model.DateCreated)
+            <div class="form-group">
+                @Html.TextBoxFor(model => Model.DateCreated, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => Model.DateCreated)
+            </div>
+        </div>
+
+        <div class="form-horizontal">
+            @Html.LabelFor(model => Model.Photo)
+            <div class="form-group">
+                @Html.TextBoxFor(model => Model.Photo, new { @class = "form-control" })
+            </div>
+            @Html.ValidationMessageFor(model => Model.Photo)
+        </div>
+
+        <input type="submit" value="Update Photo" />
+    }
+</div>

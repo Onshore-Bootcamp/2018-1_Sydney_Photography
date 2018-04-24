@@ -1,0 +1,39 @@
+﻿@using PhotographyCapstone.Models
+@model AlbumPO
+@{
+    ViewBag.Title = "UpdateAlbum";
+}
+<div class="light-background">
+    <h2>@Model.AlbumName</h2>
+    @using (Html.BeginForm("UpdateAlbum", "Albums", FormMethod.Post))
+    {
+        <div class="form-group">
+            @Html.HiddenFor(model => Model.AlbumID)
+        </div>
+        <div class="form-horizontal">
+            @Html.LabelFor(model => Model.AlbumName)
+
+            <div class="form-group">
+                @Html.TextBoxFor(model => Model.AlbumName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => Model.AlbumName, null, new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-horizontal">
+            @Html.LabelFor(model => Model.AlbumType)
+            <div class="form-group">
+                @Html.TextBoxFor(model => Model.AlbumType, new { @class = "form-control" })
+
+                @Html.ValidationMessageFor(model => Model.AlbumType, null, new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-horizontal">
+            @Html.LabelFor(model => Model.UserID)
+            <div class=" form-group">
+                @Html.DropDownListFor(model => Model.UserID, Model.UserSelectList, "Please choose a user")
+            </div>
+
+        </div>
+
+        <input type="submit" value="Update Album" />
+    }
+</div>

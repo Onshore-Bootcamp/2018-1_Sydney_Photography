@@ -1,0 +1,33 @@
+﻿@using PhotographyCapstone.Models
+@model List<List<PhotoPO>>
+@{
+    /**/
+
+    ViewBag.Title = "ViewAllPhotos";
+}
+<div class="light-background">
+    <h2>View All Photos</h2>
+    @if (Session["RoleID"] != null && (byte)Session["RoleID"] == 3)
+    {
+        <a href="@Url.Action("Upload","Photo")">
+            <input type="button" class="btn btn-dark" value="Upload New Photo" />
+        </a>
+    }
+    <br />
+    <br />
+    @foreach (List<PhotoPO> row in Model)
+    {
+        <div class="row">
+            @foreach (PhotoPO photo in row)
+            {
+                <div class="col-md-3 col-sm-6">
+                    <a href="@Url.Action("ViewPhotoDetails", "Photo", new { photoID = photo.PhotoID })">
+
+                        <img src=@photo.Photo height="200" width="200" />
+                    </a>
+                </div>
+            }
+        </div>
+    }
+
+</div>

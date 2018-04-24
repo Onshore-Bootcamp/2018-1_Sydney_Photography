@@ -1,0 +1,52 @@
+﻿@using PhotographyCapstone.Models
+@model List<List<AlbumPO>>
+@{
+    ViewBag.Title = "ViewAlbums";
+}
+
+<h2> Albums </h2>
+@if (Session["RoleID"] != null && (byte)Session["RoleId"] == 3)
+{
+    <a href="@Url.Action("AddAlbum", "Albums")">
+        <input type="button" class="btn btn-dark" value="Add New Album" />
+    </a>
+}
+
+<br />
+<div class="light-background">
+    @foreach (List<AlbumPO> row in Model)
+    {
+
+        <div class="row">
+            @foreach (AlbumPO album in row)
+            {
+                <div class="col-md-4">
+                    <div class="image">
+
+                        <a href="@Url.Action("ViewPhotosInAlbum", "Albums", new { albumID = album.AlbumID }, null)">
+                            <h2 id="albumfont"><span>@album.AlbumName</span></h2>
+                            <img src="~/Content/Images/imageedit_1_5787626273.png" height="200" width="200" alt="">
+
+
+                        </a>
+
+
+                        @if (Session["RoleId"] != null && (byte)Session["RoleID"] == 3)
+                        {
+
+                            @Html.ActionLink("Update", "UpdateAlbum", "Albums", new { albumID = album.AlbumID }, new { @class = "btn btn-primary", id = "spacer" })
+
+                            @Html.ActionLink("Remove", "RemoveAlbum", "Albums", new { albumID = album.AlbumID }, new { @class = "btn btn-primary" })
+                        }
+
+                    </div>
+                </div>
+
+
+            }
+        </div>
+
+
+    }
+</div>
+

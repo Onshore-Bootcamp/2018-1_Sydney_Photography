@@ -1,0 +1,52 @@
+﻿@using PhotographyCapstone.Models
+@model PhotoPO
+@{
+    ViewBag.Title = "Upload";
+}
+<div class="light-background">
+    <h2>Upload</h2>
+    @using (Html.BeginForm("Upload", "Photo", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {//TODO Byte column on Upload form
+        <div class="form-horizontal">
+            @Html.LabelFor(model => Model.PhotoName)
+            <div class="form-group">
+                @Html.TextBoxFor(model => Model.PhotoName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => Model.PhotoName, null, new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-horizontal">
+            @Html.LabelFor(model => Model.Height)
+            <div class="form-group">
+                @Html.TextBoxFor(model => Model.Height, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => Model.Height, null, new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-horizontal">
+            @Html.LabelFor(model => Model.Width)
+            <div class="form-group">
+                @Html.TextBoxFor(model => Model.Width, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => Model.Width, null, new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-horizontal">
+            @Html.LabelFor(model => Model.ExtensionType)
+            <div class="form-group">
+                @Html.TextBoxFor(model => Model.ExtensionType, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => Model.ExtensionType, null, new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-horizontal">
+            @Html.LabelFor(model => Model.Size)
+            <div class="form-group">
+                @Html.TextBoxFor(model => Model.Size, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => Model.Size, null, new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <label for="file"> FileName</label>
+        <input type="file" name="file" id="file" />
+
+        <input type="submit" />
+    }
+</div>

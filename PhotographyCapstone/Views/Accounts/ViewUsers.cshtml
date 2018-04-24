@@ -1,0 +1,48 @@
+﻿@using PhotographyCapstone.Models
+@model  List<UsersPO>
+@{
+    ViewBag.Title = "ViewUsers";
+}
+
+<h2>Current Users</h2>
+<div class="users">
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th> User ID </th>
+                <th> First Name </th>
+                <th> Last Name </th>
+                <th> Email </th>
+                <th> City </th>
+                <th> UserName </th>
+                <th> Role </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (UsersPO user in Model)
+            {
+                <tr>
+                    <td> @user.UserID</td>
+                    <td> @user.FirstName</td>
+                    <td> @user.LastName</td>
+                    <td> @user.Email</td>
+                    <td> @user.City</td>
+                    <td> @user.UserName</td>
+                    <td> @user.RoleName</td>
+
+                    <td> @Html.ActionLink("Update", "UpdateUser", "Accounts", new { user.UserID }, new { @class = "btn btn-primary" })</td>
+                    <td>
+                        @if (Session["RoleID"] != null && user.RoleID < 3)
+                        {
+                            @Html.ActionLink("Remove", "RemoveUser", "Accounts", new { userID = user.UserID }, new { @class = "btn btn-primary" })
+
+                        }
+                    </td>
+
+
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

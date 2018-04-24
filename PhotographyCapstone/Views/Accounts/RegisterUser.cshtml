@@ -1,0 +1,59 @@
+﻿@using PhotographyCapstone.Models
+@model UsersPO
+@{
+    ViewBag.Title = "RegisterUser";
+}
+<div class="light-background">
+    <h2>Register</h2>
+
+    @using (Html.BeginForm("RegisterUser", "Accounts", FormMethod.Post))
+    {
+        <div class="form-horizontal">
+            @Html.LabelFor(model => Model.FirstName)
+            <div class="form-group">
+                @Html.TextBoxFor(model => Model.FirstName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => Model.FirstName, null, new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-horizontal">
+            @Html.LabelFor(model => Model.LastName)
+
+            <div class="form-group">
+                @Html.TextBoxFor(model => Model.LastName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => Model.LastName, null, new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-horizontal">
+            @Html.LabelFor(model => Model.Email)
+            <div class="form-group">
+                @Html.TextBoxFor(model => Model.Email, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => Model.Email, null, new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-horizontal">
+            @Html.LabelFor(model => Model.City)
+            <div class="form-group">
+                @Html.TextBoxFor(model => Model.City, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => Model.City, null, new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-horizontal">
+            @Html.LabelFor(model => Model.UserName)
+            <div class="form-group">
+                @Html.TextBoxFor(model => Model.UserName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => Model.UserName, null, new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-horizontal">
+            @Html.LabelFor(model => Model.Password)
+            <div class="form-group">
+                @Html.PasswordFor(model => Model.Password, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => Model.Password, null, new { @class = "text-danger" })
+            </div>
+        </div>
+        <input class="btn btn-default" type="submit" value="Register" />
+
+    }
+
+</div>

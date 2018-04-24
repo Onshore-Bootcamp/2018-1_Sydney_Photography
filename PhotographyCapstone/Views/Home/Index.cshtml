@@ -1,0 +1,23 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Pacifico" rel="stylesheet">
+</head>
+<div class="light-background">
+    <header> Moments By Sydney </header>
+
+    <br />
+    <br />
+    @if (TempData.ContainsKey("Statement"))
+    {
+        <p class="text-info">@TempData["Statement"]</p>
+    }
+
+        <div class="quotes">
+            <p>
+                "Photographing people is the most challenging; I want to capture their hearts not just their faces, that’s the true beauty.”- Sydney Snarr
+            </p>
+        </div>
+</div>

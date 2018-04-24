@@ -1,0 +1,16 @@
+﻿@using PhotographyCapstone.Models
+@model List<AlbumPO>
+@{
+    ViewBag.Title = "ViewPhotosInAlbum";
+}
+
+<h2>Photos In Album</h2>
+
+
+  @foreach(AlbumPO photoInAlbum in Model)
+  {
+      <a href="@Url.Action("ViewPhotoDetails", "Photo", new { photoID= photoInAlbum.PhotoID, albumID= photoInAlbum.AlbumID})">
+          <img src="@photoInAlbum.Photo" height="200" width="200" />
+      </a>
+  }
+

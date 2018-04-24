@@ -1,0 +1,63 @@
+﻿@using PhotographyCapstone.Models
+@model PhotoPO
+@{
+    ViewBag.Title = "ViewPhotoDetails";
+}
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Krona+One" rel="stylesheet">
+
+</head>
+
+<h2>ViewPhotoDetails</h2>
+<div class="photodetails">
+    <div class="row">
+        <p class="text-center">@Html.DisplayFor(model => Model.PhotoName)</p>
+    </div>
+    <div class="row">
+        <div><img class="center-image" src="@Model.Photo" height="@Model.Height" width="@Model.Width" /></div>
+    </div>
+    <div class="row">
+        <p class="text-center">@Html.DisplayFor(model => Model.DateCreated)</p>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            @if (Session["RoleID"] != null && (byte)Session["RoleID"] == 3)
+            {
+                <a href="@Url.Action("UpdatePhoto", "Photo", new { photoID = Model.PhotoID })">
+                    <input type="button" class="btn btn-dark" value="Update This Photo" />
+                </a>
+
+            }
+
+        </div>
+        <div class="col-md-3">
+            @if (Session["RoleID"] != null)
+            {
+                <a href="@Url.Action("ViewAllPhotos", "Photo")">
+                    <input type="button" class="btn btn-warning" value="Back to All Photos" />
+                </a>
+            }
+
+        </div>
+
+        <div class="col-md-3">
+            @if (Session["RoleID"] != null && (byte)Session["RoleID"] >= 2)
+            {
+                <a href="@Url.Action("RemovePhoto", "Photo", new {photoID= Model.PhotoID})">
+                    <input type="button" class="btn btn-danger" value="Remove This Photo" />
+                </a>
+
+            }
+
+        </div>
+        @if (Session["RoleID"] != null && (byte)Session["RoleID"] == 3)
+        {
+            <div>
+                <a href="@Url.Action("AddPhotoToAlbum","Albums", new { photoID= Model.PhotoID})">
+                    <input type="button" class="btn btn-dark " value="Add To Album" />
+                </a>
+            </div>
+        }
+    </div>
+
+</div>

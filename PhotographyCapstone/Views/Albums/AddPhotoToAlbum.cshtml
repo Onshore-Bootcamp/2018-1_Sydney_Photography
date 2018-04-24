@@ -1,0 +1,22 @@
+﻿@using PhotographyCapstone.Models
+@model PhotoAlbumPO
+@{
+    ViewBag.Title = "AddPhotoToAlbum";
+}
+
+<h2>AddPhotoToAlbum</h2>
+
+@using (Html.BeginForm("AddPhotoToAlbum", "Albums", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.HiddenFor(model=> Model.PhotoID)
+    </div>
+    <div class="form-horizontal">
+        @Html.LabelFor(model=>Model.AlbumID)
+        <div class="form-group">
+            @Html.DropDownListFor(model=>Model.AlbumID, Model.DropDown, "Please chooose an Album")
+        </div>
+    </div>
+    <input type="submit" value="sumbit" />
+}
+

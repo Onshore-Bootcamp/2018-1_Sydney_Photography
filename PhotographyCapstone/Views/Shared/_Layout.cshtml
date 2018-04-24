@@ -1,0 +1,84 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    @if (Session["BackgroundImageLocation"] != null)
+    {
+    <style>
+            body {
+                background-image: url('@Session["BackgroundImageLocation"].ToString()');
+            background-repeat:no-repeat;
+        background-size:cover;
+            }
+    </style>
+    }
+
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Moments By Sydney", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    @if (Session["RoleID"] != null && (byte)Session["RoleID"] == 3)
+                    {
+
+                        <li>@Html.ActionLink("View Users", "ViewUsers", "Accounts")</li>
+
+                    }
+                    @if (Session["RoleID"] != null)
+                    {
+                        <li> @Html.ActionLink("View All Photos", "ViewAllPhotos", "Photo")</li>
+                    }
+                    @if(Session["RoleID"]!= null)
+                    {
+                        <li>@Html.ActionLink("View Albums", "ViewAlbums", "Albums") </li>
+                    }
+
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    @if (Session["RoleID"] == null)
+                    {
+                        <li>@Html.ActionLink("Login", "Login", "Accounts")</li>
+                    
+                        <li>@Html.ActionLink("Register", "RegisterUser", "Accounts")</li>
+                    }
+                   
+                    @if (Session["RoleID"] != null)
+                    {
+                        <li>@Html.ActionLink("Logout", "LogOut", "Accounts")</li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+             @DateTime.Now.Year 
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
